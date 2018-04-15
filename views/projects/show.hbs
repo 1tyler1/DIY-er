@@ -1,0 +1,18 @@
+<h1>These are {{user.username}}'s
+    projects.</h1>
+
+{{#each user.project}}
+<h3>{{this.title}}</h3>
+<h4>{{this.description}}</h4>
+<form action="/{{this._id}}/projects/?_method=DELETE"
+    method="POST">
+    <input class="waves-effect waves-light
+    btn-small" type="submit" value="DELETE"
+    />
+<a href="/{{this._id}}/projects/new?_method=PUT" class="waves-effect waves-light
+btn-small">NEW</a>
+<a class="waves-effect waves-light
+btn-small"href="/{{this._id}}/projects/edit">
+    EDIT</a>
+{{/each}}
+

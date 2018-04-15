@@ -1,0 +1,29 @@
+<h1>Edit {{user.brainstorm}}</h1>
+<div class="row">
+    <form action="/{{this._id}}/brainstorming?_method=PUT" method="POST"
+        class="col-md-6 col-md-offset-3">
+        <div class="form-group">
+            <label for="Title">Title:</label>
+            <input type="text" name="Title"
+                class="form-control"
+                value="{{this.title}}">
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <input type="text" name="description"
+                class="form-control"
+                value="{{this.description}}">
+        </div>
+        <div class="form-group">
+            <label for="Timestamp">Timestamp:</label>
+            <input type="text" name="urgent"
+                class="form-control"
+                value="{{this.timestamp}}">
+        </div>
+        <div>
+            <input type="submit" value="Update Brainstorm"
+                 class="waves-effect waves-light
+                btn-small" >
+                </div>
+    </form>
+    </div>

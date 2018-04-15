@@ -1,0 +1,19 @@
+<h1>These are {{user.username}}'s
+    brainstorms.
+</h1>
+
+{{#each user.brainstorm}}
+<h3>{{this.title}}</h3>
+<h4>{{this.description}}</h4>
+{{/each}}
+<form action="/{{this._id}}/brainstorming/?_method=DELETE"
+    method="POST">
+    <input class="waves-effect waves-light
+    btn-small" type="submit"
+        value="DELETE" />
+    <a href="/{{this._id}}/brainstorming/new"
+        class="waves-effect waves-light
+btn-small">NEW</a>
+    <a class="waves-effect waves-light
+btn-small" href="/{{this._id}}/brainstorming/edit">EDIT</a>
+   

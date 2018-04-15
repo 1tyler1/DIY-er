@@ -1,0 +1,33 @@
+<h1>Edit {{user.projects}}</h1>
+<div class="row">
+    <form action="/{{this._id}}/projects?_method=PUT" method="POST"
+        class="col-md-6 col-md-offset-3">
+        <div class="form-group">
+            <label for="Title">Title:</label>
+            <input type="text" name="Title"
+                class="form-control"
+                value="{{this.title}}">
+        </div>
+        <div class="form-group">
+            <label for="Description:">Description:</label>
+            <input type="text" name="Description"
+                class="form-control"
+                value="{{this.description}}">
+        </div>
+        <div class="form-group">
+            <label for="Priority">Priority:</label>
+            <input type="text" name="Priority"
+                class="form-control"
+                value="{{this.priority}}">
+        </div>
+            <div class="form-group">
+                <label for="">Timestamp:</label>
+                <input type="text" name="Timestamp"
+                    class="form-control" value="{{this.timestamp}}">
+            </div>
+        <div>
+            <input type="submit" value="Update Project"
+                class="btn btn-default"
+                </div>
+    </form>
+    </div>
