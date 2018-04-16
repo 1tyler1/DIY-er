@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Users = require('../models/Users')
-const projects = require('../models/projects')
-const brainstorming = require('../models/brainstorming')
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
