@@ -53,6 +53,21 @@ router.get('/:id/projects', function(req, res) {
         });
 });
 
+
+router.get('/:id/projects/edit', function(req, res) {
+    const id = req.params.id;
+
+    Users.findById(id)
+        .then(user => {
+            res.render('projects/edit', {
+                user: user,
+            });
+        })
+        .catch(err => {
+            console.log(err);
+        });
+});
+
 router.get('/:id/projects/new', function(req, res) {
     const id = req.params.id;
 
