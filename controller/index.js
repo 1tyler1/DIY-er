@@ -57,7 +57,7 @@ router.get('/:id/projects', function(req, res) {
 
 
 router.get('/:id/projects/edit', function(req, res) {
-    const id = req.params.projectsId;
+    const id = req.params.projects_id;
 
     projects.findByIdAndUpdate(id)
         .then(projects => {
