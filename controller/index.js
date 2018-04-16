@@ -74,7 +74,7 @@ router.get('/:id/projects/new', function(req, res) {
 
     Users.findById(id)
         .then(user => {
-            res.render('projects/new', {
+            res.render('projects/show', {
                 user: user,
             });
         })
