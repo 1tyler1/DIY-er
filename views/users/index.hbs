@@ -1,26 +1,27 @@
-
-<h1>{{title}}</h1>
+<h1>
+    {{title}}</h1>
 <p>Where your ideas are conceptualized</p>
 
 <div>
     <h1>Users</h1>
-    
+
     <p>
         <ul>
-        {{#each Users}}
-        <li><a href="/{{this._id}}">{{this.username}}</a></li>
-        {{/each}}
+            {{#each Users}}
+            <li>
+                <a href="/{{this._id}}">{{this.username}}</a>
+            </li>
+            {{/each}}
         </ul>
     </p>
-   
 
 </div>
 
 <div>
 
-  <h1>New User</h1>  
-<a href="/new?_method=PUT">
-    Create New User</a>
+    <h1>New User</h1>
+    <a href="/new?_method=PUT">
+        Create New User</a>
 
 
 </div>

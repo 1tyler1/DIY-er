@@ -7,8 +7,9 @@ const projects = require('../models/projects')
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-    Users.find().then((Users) => {
-            console.log(Users[0])
+    Users.find({}).then((Users) => {
+            console.log("CURRENT USERS:", Users)
+            console.log("User Zero", Users[0])
             res.render("users/index", {
                 Users: Users,
                 title: "DIY-er"
@@ -27,6 +28,7 @@ router.get('/new', function(req, res) {
 });
 
 router.get('/:id', function(req, res, next) {
+    console.log("FAVICON REQUEST HERE????")
     const id = req.params.id
     Users.findById(id).then(user => {
 

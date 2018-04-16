@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+app.use('/user', indexRouter);
 //I had to delete all my other routers because they weren't working. Unsure of why but I had to revert to an older version
 
 
@@ -39,11 +39,5 @@ app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
-
-// const PORT = process.env.PORT || 3000;
-
-// app.listen(PORT, () => {
-//     console.log(`Listening on port ${PORT}`);
-// });
 
 module.exports = app;
