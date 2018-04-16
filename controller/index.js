@@ -37,6 +37,8 @@ router.get('/:id', function(req, res, next) {
         })
 })
 
+//projects
+
 router.get('/:id/projects', function(req, res) {
     const id = req.params.id;
 
@@ -65,6 +67,8 @@ router.get('/:id/projects/new', function(req, res) {
         });
 });
 
+//brainstorms
+
 router.get('/:id/brainstorming', function(req, res) {
     const id = req.params.id;
 
@@ -75,6 +79,21 @@ router.get('/:id/brainstorming', function(req, res) {
         .catch(err => {
             console.log(err);
         });
+});
+
+router.get('/:id/brainstorming/delete', function(req, res) {
+    const id = req.params.id;
+
+    Users.findById(id)
+        .then((user) => {
+            user.projects.id(projectId).remove();
+
+            return user.save();
+        }).then(() => res.render(
+                'projects/index')
+            .catch(err => {
+                console.log(err);
+            }))
 });
 
 router.put('/:id/brainstorming/new', function(req, res) {
@@ -88,9 +107,5 @@ router.put('/:id/brainstorming/new', function(req, res) {
             console.log(err);
         });
 });
-
-//router.post('/', function(req, res) {
-
-//router.delete('/:id', function(req, res) {
 
 module.exports = router
