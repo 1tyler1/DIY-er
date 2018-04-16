@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Users = require('../models/Users')
+const projects = require('../models/projects')
+const brainstorming = require('../models/brainstorming')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -42,7 +44,7 @@ router.get('/:id', function(req, res, next) {
 router.get('/:id/projects', function(req, res) {
     const id = req.params.id;
 
-    Users.findById(id)
+    projects.findById(id)
         .then(user => {
             res.render('projects/show', {
                 user: user,
@@ -57,7 +59,7 @@ router.get('/:id/projects', function(req, res) {
 router.get('/:id/projects/edit', function(req, res) {
     const id = req.params.id;
 
-    Users.findById(id)
+    projects.findById(id)
         .then(user => {
             res.render('projects/edit', {
                 user: user,
@@ -87,7 +89,7 @@ router.get('/:id/projects/new', function(req, res) {
 router.get('/:id/brainstorming', function(req, res) {
     const id = req.params.id;
 
-    Users.findById(id)
+    brainstorming.findById(id)
         .then(user => {
             res.render('brainstorming/show', { user: user });
         })
@@ -99,7 +101,7 @@ router.get('/:id/brainstorming', function(req, res) {
 router.get('/:id/brainstorming/delete', function(req, res) {
     const id = req.params.id;
 
-    Users.findById(id)
+    brainstorming.findById(id)
         .then((user) => {
             user.projects.id(projectId).remove();
 
@@ -114,7 +116,7 @@ router.get('/:id/brainstorming/delete', function(req, res) {
 router.get('/:id/brainstorming/new', function(req, res) {
     const id = req.params.id;
     const body = req.body;
-    Users.create(body)
+    brainstorming.create(body)
         .then(user => {
             res.redirect('brainstorming/');
         })
@@ -124,7 +126,7 @@ router.get('/:id/brainstorming/new', function(req, res) {
 });
 
 router.patch('/:id/brainstorming/edit', ((req, res) => {
-    const brains = Brainstorming.findByIdAndUpdate(req.params.id, {
+    const brains = brainstorming.findByIdAndUpdate(req.params.id, {
         title: title,
         description: description,
         timestamp: timestamp
