@@ -105,7 +105,7 @@ router.get('/:id/brainstorming/delete', function(req, res) {
 
             return user.save();
         }).then(() => res.render(
-                'projects/index')
+                'brainstorming/index')
             .catch(err => {
                 console.log(err);
             }))
@@ -116,7 +116,7 @@ router.get('/:id/brainstorming/new', function(req, res) {
     const body = req.body;
     Users.create(body)
         .then(user => {
-            res.redirect('/brainstorming/');
+            res.redirect('brainstorming/');
         })
         .catch(err => {
             console.log(err);
@@ -124,7 +124,12 @@ router.get('/:id/brainstorming/new', function(req, res) {
 });
 
 router.patch('/:id/brainstorming/edit', ((req, res) => {
-    Brainstorming.findByIdAndUpdate(req.params.id, {
+    const brains = Brainstorming.findByIdAndUpdate(req.params.id, {
+        title: title,
+        description: description,
+        timestamp: timestamp
+    }, ).then((brains) => {
+        res.redirect('brainstorming/')
 
     })
 }))
