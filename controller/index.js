@@ -96,12 +96,12 @@ router.get('/:id/brainstorming/delete', function(req, res) {
             }))
 });
 
-router.put('/:id/brainstorming/new', function(req, res) {
+router.get('/:id/brainstorming/new', function(req, res) {
     const id = req.params.id;
     const body = req.body;
-    Users.id(id, body)
+    Users.create(body)
         .then(user => {
-            res.redirect(`/brainstorming`);
+            res.redirect('/brainstorming/');
         })
         .catch(err => {
             console.log(err);
