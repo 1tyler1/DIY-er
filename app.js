@@ -40,10 +40,10 @@ app.use(function(err, req, res, next) {
     res.render('error');
 });
 
-const PORT = process.env.PORT || 3000;
+// const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}`);
-});
+// app.listen(PORT, () => {
+//     console.log(`Listening on port ${PORT}`);
+// });
 
 module.exports = app;
