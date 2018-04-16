@@ -44,7 +44,7 @@ router.get('/:id', function(req, res, next) {
 router.get('/:id/projects', function(req, res) {
     const id = req.params.id;
 
-    projects.findById(id)
+    Users.findById(id)
         .then(user => {
             res.render('projects/show', {
                 user: user,
@@ -59,7 +59,7 @@ router.get('/:id/projects', function(req, res) {
 router.get('/:id/projects/edit', function(req, res) {
     const id = req.params.id;
 
-    projects.findById(id)
+    Users.findById(id)
         .then(user => {
             res.render('projects/edit', {
                 user: user,
@@ -89,7 +89,7 @@ router.get('/:id/projects/new', function(req, res) {
 router.get('/:id/brainstorming', function(req, res) {
     const id = req.params.id;
 
-    brainstorming.findById(id)
+    Users.findById(id)
         .then(user => {
             res.render('brainstorming/show', { user: user });
         })
@@ -101,7 +101,7 @@ router.get('/:id/brainstorming', function(req, res) {
 router.get('/:id/brainstorming/delete', function(req, res) {
     const id = req.params.id;
 
-    brainstorming.findById(id)
+    Users.findById(id)
         .then((user) => {
             user.projects.id(projectId).remove();
 
@@ -116,7 +116,7 @@ router.get('/:id/brainstorming/delete', function(req, res) {
 router.get('/:id/brainstorming/new', function(req, res) {
     const id = req.params.id;
     const body = req.body;
-    brainstorming.create(body)
+    Users.create(body)
         .then(user => {
             res.redirect('brainstorming/');
         })
@@ -126,7 +126,7 @@ router.get('/:id/brainstorming/new', function(req, res) {
 });
 
 router.patch('/:id/brainstorming/edit', ((req, res) => {
-    const brains = brainstorming.findByIdAndUpdate(req.params.id, {
+    const brains = Brainstorming.findByIdAndUpdate(req.params.id, {
         title: title,
         description: description,
         timestamp: timestamp
