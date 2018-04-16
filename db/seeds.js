@@ -1,7 +1,7 @@
  require('dotenv').config();
 
 
- const Users = require('../models/users');
+ const Users = require('../models/Users');
  const Brains = require('../models/brainstorming');
  const Project = require('../models/projects');
  const mongoose = require('mongoose');
