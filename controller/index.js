@@ -123,4 +123,10 @@ router.get('/:id/brainstorming/new', function(req, res) {
         });
 });
 
+router.patch('/:id/brainstorming/edit', ((req, res) => {
+    Brainstorming.findByIdAndUpdate(req.params.id, {
+
+    })
+}))
+
 module.exports = router
