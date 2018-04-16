@@ -33,7 +33,9 @@ router.get('/:id', function(req, res, next) {
             console.log(err);
         });
 });
-//Iceboxed work-IT DOES ACTUALLY WORk, I just don't have time to build about full CRUD
+
+//Iceboxed - IT DOES ACTUALLY WORK, I just don't have time to build out full CRUD
+
 // router.get('/edit', function(req, res) {
 //     res.render("users/edit")
 // });
@@ -60,103 +62,109 @@ router.get('/:id/projects', function(req, res) {
         });
 });
 
+//projects new form
+
+router.get('/:id/projects/new', (req, res) => {
+    res.render('projects/new')
+});
+
+router.post('/:id/projects', ((req, res) => {
+    projects.findById(req.params.id)
+        .then((projects) => {
+            const form = req.body;
+            const newproj = new project({
+                title: form.title,
+                description: form.description,
+                priority: form.priority,
+                timestamp: form.timestamp
+            })
+        }).then(() => {
+            projects.proj.push(newproj)
+            projects.save()
+        }).then(() => {
+            res.redirect('/:id/projects')
+        })
+}))
+
+
+
+
+
+
 //projects edit form
 
 router.get('/:id/projects/edit', function(req, res) {
-            const id = req.params.id;
+    const id = req.params.id;
 
-            projects.findByIdAndUpdate(id)
-                .then(user => {
-                    res.render('projects/edit');
-                });
-
-            //projects new form
-
-            router.get('/:id/projects/new', function(req, res) {
-                res.render('projects/new')
-            });
-
-            router.put('/:id/projects', function(request, response) {
-
-                var userId = request.params.id;
-
-
-                var newUserInfo = request.body;
-
-
-                User.findByIdAndUpdate(userId, newUserInfo, { new: true }).exec(function(
-                    error,
-                    user
-                ) {
-                    if (error) {
-                        console.log('Error while updating User with ID of ' + userId);
-                        return;
-                    }
-
-
-                    response.redirect('/users/' + userId);
-                });
-            });
-
-            router.delete('/:id/projects/', (req, res) => {
-
-                projects.findByIdAndRemove(req.params.id).then(() => {
-                    res.redirect('/:id/projects')
-                })
-            });
+    projects.findByIdAndUpdate(id)
+        .then(user => {
+            res.render('projects/edit');
+        })
+});
 
 
 
-            //brainstorms - 
 
-            router.get('/:id/brainstorming', function(req, res) {
-                const id = req.params.id;
 
-                Users.findById(id)
-                    .then(user => {
-                        res.render('brainstorming/show', { user: user });
-                    })
-                    .catch(err => {
-                        console.log(err);
-                    });
-            });
+router.delete('/:id/projects/', (req, res) => {
 
-            router.get('/:id/brainstorming/delete', function(req, res) {
-                const id = req.params.id;
+    projects.findByIdAndRemove(req.params.projectsid).then(() => {
+        res.redirect('/:id/projects')
+    })
+});
 
-                Users.findById(id)
-                    .then((user) => {
-                        user.projects.id(projectId).remove();
 
-                        return user.save();
-                    }).then(() => res.render(
-                            'brainstorming/index')
-                        .catch(err => {
-                            console.log(err);
-                        }))
-            });
 
-            router.get('/:id/brainstorming/new', function(req, res) {
-                const id = req.params.id;
-                const body = req.body;
-                Users.create(body)
-                    .then(user => {
-                        res.redirect('brainstorming/');
-                    })
-                    .catch(err => {
-                        console.log(err);
-                    });
-            });
+//brainstorms - 
 
-            router.patch('/:id/brainstorming/edit', ((req, res) => {
-                const brains = Brainstorming.findByIdAndUpdate(req.params.id, {
-                    title: title,
-                    description: description,
-                    timestamp: timestamp
-                }, ).then((brains) => {
-                    res.redirect('brainstorming/')
+router.get('/:id/brainstorming', function(req, res) {
+    const id = req.params.id;
 
-                })
+    Users.findById(id)
+        .then(user => {
+            res.render('brainstorming/show', { user: user });
+        })
+        .catch(err => {
+            console.log(err);
+        });
+});
+
+router.get('/:id/brainstorming/delete', function(req, res) {
+    const id = req.params.id;
+
+    Users.findById(id)
+        .then((user) => {
+            user.projects.id(projectId).remove();
+
+            return user.save();
+        }).then(() => res.render(
+                'brainstorming/index')
+            .catch(err => {
+                console.log(err);
             }))
+});
 
-            module.exports = router
+router.get('/:id/brainstorming/new', function(req, res) {
+    const id = req.params.id;
+    const body = req.body;
+    Users.create(body)
+        .then(user => {
+            res.redirect('brainstorming/');
+        })
+        .catch(err => {
+            console.log(err);
+        });
+});
+
+router.patch('/:id/brainstorming/edit', ((req, res) => {
+    const brains = Brainstorming.findByIdAndUpdate(req.params.id, {
+        title: title,
+        description: description,
+        timestamp: timestamp
+    }, ).then((brains) => {
+        res.redirect('brainstorming/')
+
+    })
+}))
+
+module.exports = router
