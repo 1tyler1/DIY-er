@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/user', indexRouter);
+app.use('/', indexRouter);
 //I had to delete all my other routers because they weren't working. Unsure of why but I had to revert to an older version
 
 
