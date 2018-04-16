@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Users = require('../models/Users')
+const projects = require('../models/projects')
 
 
 /* GET home page. */
@@ -56,12 +57,15 @@ router.get('/:id/projects', function(req, res) {
 
 
 router.get('/:id/projects/edit', function(req, res) {
-    const id = req.params.id;
+    const id = req.params.projectsId;
 
-    Users.findById(id)
-        .then(user => {
+    projects.findByIdAndUpdate(id)
+        .then(projects => {
             res.render('projects/edit', {
-                user: user,
+                title: title,
+                description: description,
+                priority: priority,
+                timestamp: timestamp
             });
         })
         .catch(err => {

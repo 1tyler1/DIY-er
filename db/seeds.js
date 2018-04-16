@@ -12,7 +12,7 @@
      mongoose.connect('mongodb://localhost/DIY-er');
  }
 
- mongoose.connection.once('open', () => {
+ mongoose.connection.on('open', () => {
      console.log(`MONGO IS CONNECTED!!!`);
  });
 
