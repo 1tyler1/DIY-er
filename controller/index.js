@@ -65,9 +65,14 @@ router.get('/:id/projects', function(req, res) {
 //projects new form
 
 router.get('/:id/projects/new', (req, res) => {
-    res.render('projects/new')
+    const id = req.params.id
+    Users.findById(id)
+        .then((user) => {
+    res.render('projects/new', {
+        user: user
+    })
 });
-
+})
 router.post('/:id/projects', ((req, res) => {
     Users.findById(id)
         .then((user) => {
@@ -76,8 +81,8 @@ router.post('/:id/projects', ((req, res) => {
             const newproj = new project({
                 title: newform.title,
                 description: newform.description,
-                priority: newform.priority,
-                timestamp: newform.timestamp
+                priority: newform.Boolean,
+                timestamp: newform.date
             })
       
     
