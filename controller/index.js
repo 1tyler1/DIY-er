@@ -69,25 +69,31 @@ router.get('/:id/projects/new', (req, res) => {
 });
 
 router.post('/:id/projects', ((req, res) => {
-    projects.findById(req.params.id)
-        .then((projects) => {
-            const form = req.body;
+    Users.findById(id)
+        .then((user) => {
+            
+            const newform = req.body
             const newproj = new project({
-                title: form.title,
-                description: form.description,
-                priority: form.priority,
-                timestamp: form.timestamp
+                title: newform.title,
+                description: newform.description,
+                priority: newform.priority,
+                timestamp: newform.timestamp
             })
-        }).then(() => {
-            projects.proj.push(newproj)
-            projects.save()
-        }).then(() => {
-            res.redirect('/:id/projects')
-        })
+      
+    
+    res.redirect('/:id/projects')
+
+
+newproj.save((err, newproj) => {
+if (err) {
+    console.log(err);
+    return;
+}
+})
+    
+    
+})
 }))
-
-
-
 
 
 
@@ -98,7 +104,9 @@ router.get('/:id/projects/edit', function(req, res) {
 
     projects.findByIdAndUpdate(id)
         .then(user => {
-            res.render('projects/edit');
+            res.render('projects/edit', {
+                projects: projects
+            });
         })
 });
 
