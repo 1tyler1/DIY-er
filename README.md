@@ -8,8 +8,8 @@ https://morning-peak-19701.herokuapp.com/
 https://trello.com/b/XXmDxFvg/project-2
 
 # Technical Requirements
-![ERD and Wireframes I](https://imgur.com/a/eiRwT)
-![ERD and Wireframes II](https://imgur.com/a/jSXFu)
+[ERD and Wireframes I](https://imgur.com/a/eiRwT)
+[ERD and Wireframes II](https://imgur.com/a/jSXFu)
 
 # The technologies used:
 1.[Project 2 information](https://git.generalassemb.ly/atl-wdi/wdi-curriculum/tree/master/projects/unit_02)
